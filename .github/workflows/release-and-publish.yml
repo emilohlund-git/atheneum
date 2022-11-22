@@ -1,0 +1,40 @@
+name: Release & Publish
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+      - name: Checkout repository 🚧
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Use Node.js 16.x 🚧
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies, build & test package 🛠
+        run: yarn
+
+      - name: Release 🚀
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npx semantic-release --debug
+
+      - name: Deploy Demo 🚀
+        uses: JamesIves/github-pages-deploy-action@v4.2.5
+        with:
+          branch: main
+          folder: example
+          token: ${{secrets.GITHUB_TOKEN}}

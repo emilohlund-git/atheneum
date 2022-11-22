@@ -1,0 +1,105 @@
+{
+  "license": "MIT",
+  "main": "dist/index.js",
+  "name": "@atheneum/atheneum",
+  "author": {
+    "name": "Emil Ölund"
+  },
+  "module": "dist/atheneum.esm.js",
+  "typings": "dist/index.d.ts",
+  "readme": "ERROR: No README data found!",
+  "homepage": "https://github.com/emilohlund-git/atheneum#readme",
+  "version": "0.0.0-development",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/emilohlund-git/atheneum.git"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "yarn test && tsdx build && yarn build-tailwind",
+    "build-tailwind": "set NODE_ENV=production && npx tailwindcss -o ./dist/tailwind.css --minify",
+    "test": "tsdx test --passWithNoTests",
+    "prepare": "yarn build && husky install",
+    "size": "size-limit",
+    "analyze": "size-limit --why",
+    "storybook": "start-storybook -p 6006",
+    "storybook:build": "build-storybook",
+    "chromatic": "chromatic --project-token=CHROMATIC_PROJECT_TOKEN",
+    "test:push": "yarn test && npx release-it",
+    "post:push": "git fetch && git checkout main && git pull",
+    "semantic-release": "semantic-release"
+  },
+  "peerDependencies": {
+    "react": ">=16"
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "size-limit": [
+    {
+      "path": "dist/atheneum.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/atheneum.esm.js",
+      "limit": "10 KB"
+    }
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.20.2",
+    "@size-limit/preset-small-lib": "^8.1.0",
+    "@storybook/addon-essentials": "^6.5.13",
+    "@storybook/addon-info": "^5.3.21",
+    "@storybook/addon-interactions": "^6.5.13",
+    "@storybook/addon-knobs": "^6.4.0",
+    "@storybook/addon-links": "^6.5.13",
+    "@storybook/addon-postcss": "^2.0.0",
+    "@storybook/addons": "^6.5.13",
+    "@storybook/jest": "^0.0.10",
+    "@storybook/react": "^6.5.13",
+    "@storybook/testing-library": "^0.0.13",
+    "@tailwindcss/postcss7-compat": "^2.2.17",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@types/react": "^18.0.25",
+    "@types/react-dom": "^18.0.9",
+    "autoprefixer": "^10.4.13",
+    "babel-loader": "^9.1.0",
+    "chromatic": "^6.11.4",
+    "husky": "^8.0.2",
+    "identity-obj-proxy": "^3.0.0",
+    "postcss": "^8.4.19",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-is": "^18.2.0",
+    "rollup-plugin-postcss": "^3.1.8",
+    "size-limit": "^8.1.0",
+    "tailwindcss": "^3.2.4",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.4.1",
+    "typescript": "^4.9.3",
+    "semantic-release": "^19.0.5"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less|scss|sass)$": "identity-obj-proxy"
+    }
+  },
+  "dependencies": {
+    "@headlessui/react": "^1.7.4"
+  },
+  "bugs": {
+    "url": "https://github.com/emilohlund-git/atheneum/issues"
+  }
+}
