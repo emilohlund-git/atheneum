@@ -19,7 +19,7 @@ describe('Running Test for Input', () => {
 
     rerender(<Input value="Hej" onChange={() => {}} size="large" />);
 
-    expect(inputElement.classList.contains('text-3xl')).toBe(true);
+    expect(inputElement.classList.contains('text-2xl')).toBe(true);
   });
 
   test('Check Input Variants', async () => {
