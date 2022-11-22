@@ -35,6 +35,6 @@ jobs:
       - name: Deploy Demo 🚀
         uses: JamesIves/github-pages-deploy-action@v4.2.5
         with:
-          branch: main
+          branch: gh_pages
           folder: example
           token: ${{secrets.GITHUB_TOKEN}}
