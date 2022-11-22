@@ -32,7 +32,6 @@
     "storybook": "start-storybook -p 6006",
     "storybook:build": "build-storybook",
     "chromatic": "chromatic --project-token=CHROMATIC_PROJECT_TOKEN",
-    "test:push": "yarn test && npx release-it",
     "post:push": "git fetch && git checkout main && git pull",
     "semantic-release": "semantic-release"
   },
