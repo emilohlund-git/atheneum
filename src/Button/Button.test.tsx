@@ -27,26 +27,22 @@ describe('Running Test for Button', () => {
 
     rerender(<Button size={'small'}>Text</Button>);
 
-    expect(buttonElement.classList.contains('text-lg')).toBe(true);
+    expect(buttonElement.classList.contains('text-sm')).toBe(true);
 
     rerender(<Button size="large">Text</Button>);
 
-    expect(buttonElement.classList.contains('text-2xl')).toBe(true);
+    expect(buttonElement.classList.contains('text-lg')).toBe(true);
 
     fireEvent.mouseEnter(buttonElement);
 
     await waitFor(() => screen.getByTestId('overlay'));
 
-    expect(screen.getByTestId('overlay')).toHaveStyle(
-      'clip-path: inset(0% 0% 0% 0%);'
-    );
+    expect(screen.getByTestId('overlay')).toHaveClass('w-[700px]');
 
     fireEvent.mouseLeave(buttonElement);
 
     await waitFor(() => screen.getByTestId('overlay'));
 
-    expect(screen.getByTestId('overlay')).toHaveStyle(
-      'clip-path: inset(100% 0% 0% 0%);'
-    );
+    expect(screen.getByTestId('overlay')).toHaveClass('w-0');
   });
 });

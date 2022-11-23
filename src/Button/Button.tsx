@@ -142,8 +142,8 @@ const Button: FC<ButtonProps> & React.HTMLProps<HTMLButtonElement> = ({
           data-testid="overlay"
           style={{
             position: 'absolute',
-            top: coords.y,
-            left: coords.x,
+            top: coords.y || 0,
+            left: coords.x || 0,
             transition: 'width 0.4s ease-in-out height 0.4s ease-in-out',
             transform: 'translate(-50%, -50%)',
           }}
