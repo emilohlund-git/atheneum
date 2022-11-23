@@ -5,9 +5,6 @@ module.exports = {
   theme: {
     extend: {},
   },
-  variants: {
-  },
-  plugins: [
-    require('./tailwind/atheneum-design-system.js')
-  ],
+  variants: {},
+  plugins: [require('./tailwind/atheneum-design-system.js')],
 };

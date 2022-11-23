@@ -2,22 +2,21 @@ module.exports = {
   config: {
     theme: {
       fontFamily: {
-        display: ['Assistant'],
-        serif: ['Assistant', 'system-ui'],
+        default: ['Assistant', 'sans-serif'],
       },
       fill: {
         primary: {
-          default: '#FF331F',
+          default: '#FE7063',
           content: '#FBFBFF',
           focus: '#E01300',
         },
         secondary: {
-          default: '#657ED4',
+          default: '#93A4E1',
           content: '#FBFBFF',
           focus: '#4060C9',
         },
         accent: {
-          default: '#EFA00B',
+          default: '#F3BC55',
           content: '#0D0106',
           focus: '#D68F0A',
         },
