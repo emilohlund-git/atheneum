@@ -1,6 +1,6 @@
 import React, { createContext, useState } from 'react';
-import { defaultTheme } from '../../themes/DefaultTheme';
-import { Theme } from '../../types/Theme';
+import { defaultTheme } from '../themes/DefaultTheme';
+import { Theme } from '../types/Theme';
 import { ThemeContextProps } from './ThemeContext.types';
 
 export const ThemeContext = createContext({

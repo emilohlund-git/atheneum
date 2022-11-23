@@ -2,7 +2,7 @@ import React from 'react';
 import { Story, Meta } from '@storybook/react';
 import Form from './Form';
 import { FormProps } from './Form.types';
-import FormProvider from '../Context/FormContext/FormContext';
+import FormProvider from '../../context/FormContext';
 
 export default {
   title: 'Components/UI/Form',
