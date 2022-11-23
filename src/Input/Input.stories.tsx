@@ -73,6 +73,7 @@ export const Error = Template.bind({});
 Error.args = {
   error: true,
   value: 'Error',
+  message: 'This is an error message. Something went terribly wrong.',
 };
 
 export const Success = Template.bind({});
@@ -85,4 +86,10 @@ export const Warning = Template.bind({});
 Warning.args = {
   warning: true,
   value: 'Warning',
+};
+
+export const Password = Template.bind({});
+Password.args = {
+  type: 'password',
+  value: 'Password',
 };
