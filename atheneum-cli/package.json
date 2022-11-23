@@ -1,0 +1,48 @@
+{
+  "name": "atheneum-cli",
+  "version": "1.0.0",
+  "description": "CLI for Atheneum",
+  "main": "dist/cli.js",
+  "type": "module",
+  "bin": {
+    "@atheneum/create-component": "bin/create-component.js",
+    "create-component": "bin/create-component.js"
+  },
+  "scripts": {
+    "build": "rollup -c rollup.config.js",
+    "dev": "rollup -c rollup.config.js --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "keywords": [
+    "cli",
+    "scaffold",
+    "bootstrap"
+  ],
+  "author": "Emil Ölund",
+  "license": "ISC",
+  "devDependencies": {
+    "@rollup/plugin-typescript": "9.0.2",
+    "@types/inquirer": "9.0.3",
+    "@types/listr": "0.14.4",
+    "@types/ncp": "2.0.5",
+    "@types/node": "18.11.9",
+    "rollup": "3.4.0",
+    "rollup-plugin-auto-external": "2.0.0",
+    "tslib": "2.4.1",
+    "typescript": "4.9.3"
+  },
+  "dependencies": {
+    "chalk": "5.1.2",
+    "execa": "6.1.0",
+    "listr": "0.14.3",
+    "inquirer": "8.2.4",
+    "ncp": "2.0.0",
+    "pkg-install": "1.0.0"
+  }
+}
