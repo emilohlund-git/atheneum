@@ -1,10 +1,9 @@
 import React, { FC, useState, useContext } from 'react';
-import { FormContext } from '../Context/FormContext/FormContext';
-
-import PasswordEyeClosed from '../icons/PasswordEyeClosed';
-import PasswordEyeOpened from '../icons/PasswordEyeOpened';
-import { InputSizes } from '../types/Sizes';
-import { InputVariants } from '../types/Variants';
+import { FormContext } from '../../context/FormContext/FormContext';
+import PasswordEyeClosed from '../../icons/PasswordEyeClosed';
+import PasswordEyeOpened from '../../icons/PasswordEyeOpened';
+import { InputSizes } from '../../types/Sizes';
+import { InputVariants } from '../../types/Variants';
 import { InputProps } from './Input.types';
 
 const getSizeStyles = (size: InputSizes) => {
@@ -72,7 +71,7 @@ const Input: FC<InputProps> & React.HTMLProps<HTMLInputElement> = ({
   const [show, setShow] = useState(false);
 
   const changeHandler = (event: any) => {
-    onInput(placeholder?.toLowerCase(), event.target.value);
+    onInput(placeholder!.toLowerCase(), event.target.value);
   };
 
   return (

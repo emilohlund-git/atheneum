@@ -17,21 +17,21 @@ const OverviewTemplate: Story<InputProps> = () => {
       <div className="flex flex-col">
         <p className="font-semibold text-lg my-4">Input styles</p>
         <div className="flex gap-x-4">
-          <Input variant="primary" />
-          <Input variant="bordered" />
-          <Input variant="ghost" />
+          <Input onInput={() => {}} variant="primary" />
+          <Input onInput={() => {}} variant="bordered" />
+          <Input onInput={() => {}} variant="ghost" />
         </div>
         <p className="font-semibold text-lg my-4">Input sizes</p>
         <div className="flex gap-x-4">
-          <Input variant="primary" size="large" />
-          <Input variant="primary" size="medium" />
-          <Input variant="primary" size="small" />
+          <Input onInput={() => {}} variant="primary" size="large" />
+          <Input onInput={() => {}} variant="primary" size="medium" />
+          <Input onInput={() => {}} variant="primary" size="small" />
         </div>
         <p className="font-semibold text-lg my-4">Input colors</p>
         <div className="flex gap-x-4">
-          <Input variant="primary" warning size="medium" />
-          <Input variant="primary" error size="medium" />
-          <Input variant="primary" success size="medium" />
+          <Input onInput={() => {}} variant="primary" warning size="medium" />
+          <Input onInput={() => {}} variant="primary" error size="medium" />
+          <Input onInput={() => {}} variant="primary" success size="medium" />
         </div>
       </div>
     </div>

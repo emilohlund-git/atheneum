@@ -1,10 +1,6 @@
 module.exports = {
   mode: 'jit',
-  purge: ['./src/**/*.{js,jsx,ts,tsx}', './stories/*'],
-  darkMode: false, // or 'media' or 'class'
-  theme: {
-    extend: {},
-  },
-  variants: {},
-  plugins: [require('./tailwind/atheneum-design-system.js')],
+  content: ['./src/**/*.{js,jsx,ts,tsx}', './stories/*'],
+  darkMode: 'media',
+  plugins: [require('./src')],
 };

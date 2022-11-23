@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { LinkVariants } from '../types/Variants';
+import { LinkVariants } from '../../types/Variants';
 import { LinkProps } from './Link.types';
 
 const getColorStyles = (variant: LinkVariants, hover: boolean) => {

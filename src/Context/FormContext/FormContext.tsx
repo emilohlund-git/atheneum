@@ -1,23 +1,5 @@
-import React, {
-  createContext,
-  useReducer,
-  ReactNode,
-  useCallback,
-  Dispatch,
-} from 'react';
-
-interface State {
-  name: string;
-  email: string;
-  address: string;
-  number: number;
-}
-
-interface Action {
-  id: string;
-  value: string | number;
-  type: string;
-}
+import React, { createContext, useReducer, useCallback, Dispatch } from 'react';
+import { Action, FormContextProps, State } from './FormContext.types';
 
 const initialState: State = {
   name: '',
@@ -41,10 +23,6 @@ export const FormContext = createContext({
   dispatch: () => {},
   inputHandler: () => {},
 } as { state: State; dispatch: Dispatch<Action>; inputHandler: (id: string, value: string | number) => void });
-
-interface FormContextProps {
-  children: ReactNode;
-}
 
 const FormProvider: React.FC<FormContextProps> = ({ children }) => {
   const [state, dispatch] = useReducer(formReducer, initialState);

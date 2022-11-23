@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { LinkVariants } from '../types/Variants';
+import { LinkVariants } from '../../types/Variants';
 
 export interface LinkProps {
   error?: boolean;

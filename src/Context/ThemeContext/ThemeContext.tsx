@@ -1,14 +1,14 @@
 import React, { createContext, useState } from 'react';
-import { defaultTheme } from '../../Themes/DefaultTheme';
+import { defaultTheme } from '../../themes/DefaultTheme';
 import { Theme } from '../../types/Theme';
-import { ThemeProps } from './ThemeContext.types';
+import { ThemeContextProps } from './ThemeContext.types';
 
 export const ThemeContext = createContext({
   theme: defaultTheme,
   toggleTheme: (_: Theme) => {},
 } as { theme: Theme; toggleTheme: (theme: Theme) => void });
 
-const ThemeProvider: React.FC<ThemeProps> = ({ children }) => {
+const ThemeProvider: React.FC<ThemeContextProps> = ({ children }) => {
   const [theme, setTheme] = useState(defaultTheme);
 
   const toggleTheme = (theme: Theme): void => {

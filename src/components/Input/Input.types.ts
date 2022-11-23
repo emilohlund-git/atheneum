@@ -1,6 +1,6 @@
-import { InputTypes } from '../types/InputTypes';
-import { InputSizes } from '../types/Sizes';
-import { InputVariants } from '../types/Variants';
+import { InputTypes } from '../../types/InputTypes';
+import { InputSizes } from '../../types/Sizes';
+import { InputVariants } from '../../types/Variants';
 
 export interface InputProps {
   error?: boolean;
@@ -15,5 +15,5 @@ export interface InputProps {
   required?: boolean;
   component?: string;
   id?: string;
-  onInput?: any;
+  onInput: (id: string, value: string | number) => void;
 }

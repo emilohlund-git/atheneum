@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Input } from '../Input';
 import { Button } from '../Button';
 import { FormProps } from './Form.types';
-import { FormContext } from '../Context/FormContext/FormContext';
+import { FormContext } from '../../context/FormContext/FormContext';
 
 const Form: React.FC<FormProps> = ({ id }) => {
   const { state, inputHandler } = useContext(FormContext);
