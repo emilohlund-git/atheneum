@@ -1,11 +1,11 @@
 import React, { FC, useContext, useState } from 'react';
 import { ButtonProps } from './Button.types';
 import { ButtonSizes } from '../../types/Sizes';
-import { ThemeContext } from '../../context/ThemeContext/ThemeContext';
 import {
   buildButtonStyle,
   buildLoadingStyle,
 } from '../../utils/button.variants';
+import { ThemeContext } from '../../context/ThemeContext';
 
 const getSizeStyles = (size: ButtonSizes) => {
   const large = 'py-2 px-6 text-lg';

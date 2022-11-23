@@ -1,5 +1,5 @@
 import React, { FC, useState, useContext } from 'react';
-import { FormContext } from '../../context/FormContext/FormContext';
+import { FormContext } from '../../context/FormContext';
 import PasswordEyeClosed from '../../icons/PasswordEyeClosed';
 import PasswordEyeOpened from '../../icons/PasswordEyeOpened';
 import { InputSizes } from '../../types/Sizes';
