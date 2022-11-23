@@ -1,6 +1,10 @@
 module.exports = {
   config: {
     theme: {
+      fontFamily: {
+        display: ['Assistant'],
+        serif: ['Assistant', 'system-ui'],
+      },
       fill: {
         primary: {
           default: '#FF331F',
@@ -85,7 +89,5 @@ module.exports = {
       },
     },
   },
-  handler: function() {
-
-  }
-}
+  handler: function() {},
+};

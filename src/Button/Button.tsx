@@ -1,14 +1,18 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useContext, useState } from 'react';
 import { ButtonProps } from './Button.types';
 import { ButtonVariants } from '../types/Variants';
 import { ButtonSizes } from '../types/Sizes';
+import { ThemeContext } from '../Context/ThemeContext/ThemeContext';
 
 const getSizeStyles = (size: ButtonSizes) => {
-  const small = 'py-2 px-6 text-lg';
-  const medium = 'py-4 px-8 text-xl';
-  const large = 'py-6 px-12 text-2xl';
+  const large = 'py-2 px-6 text-lg';
+  const medium = 'py-2 px-6 text-md';
+  const small = 'py-2 px-6 text-sm';
+  const tiny = 'py-2 px-6 text-xs';
 
   switch (size) {
+    case 'tiny':
+      return tiny;
     case 'small':
       return small;
     case 'medium':
@@ -18,108 +22,90 @@ const getSizeStyles = (size: ButtonSizes) => {
   }
 };
 
-const getColorStyles = (
-  variant: ButtonVariants,
-  overlay: boolean,
-  loading?: boolean,
-  outline?: boolean
-) => {
+const getColorStyles = (variant: ButtonVariants, outline?: boolean) => {
   const VARIANTS = {
     primary: {
-      outline: 'bg-primary-content border-primary-default text-primary-default',
-      overlay: 'bg-primary-default text-primary-content',
-      loading: 'bg-primary-default text-primary-default',
-      default: 'border-primary-default bg-primary-default text-primary-content',
+      outline: 'ring-[1px] ring-primary-default text-primary-default',
+      default: 'bg-primary-default text-primary-content',
     },
     secondary: {
-      outline:
-        'bg-secondary-content border-secondary-default text-secondary-default',
-      overlay: 'bg-secondary-default text-secondary-content',
-      loading: 'bg-secondary-default text-secondary-default',
-      default:
-        'border-secondary-default bg-secondary-default text-secondary-content',
+      outline: 'ring-[1px] ring-secondary-default text-secondary-default',
+      default: 'bg-secondary-default text-secondary-content',
     },
     accent: {
-      outline: 'bg-primary-content border-accent-default text-accent-default',
-      overlay: 'bg-accent-default text-accent-content',
-      loading: 'bg-accent-default text-accent-default',
-      default: 'border-accent-default bg-accent-default text-accent-content',
+      outline: 'ring-[1px] ring-accent-default text-accent-default',
+      default: 'bg-accent-default text-accent-content',
     },
     light: {
-      outline: 'bg-light-default border-light-default text-light-content',
-      overlay: 'bg-light-default text-light-content',
-      loading: 'bg-light-default text-light-default',
-      default: 'border-light-default bg-light-default text-light-content',
+      outline: 'ring-[1px] ring-light-default text-light-content',
+      default: 'bg-light-default text-light-content',
     },
     dark: {
-      outline: 'bg-primary-content border-dark-default text-dark-default',
-      overlay: 'bg-dark-default text-dark-content',
-      loading: 'bg-dark-default text-dark-default',
-      default: 'border-dark-default bg-dark-default text-dark-content',
+      outline: 'ring-[1px] ring-dark-default text-dark-default',
+      default: 'bg-dark-default text-dark-content',
     },
     success: {
-      outline: 'bg-primary-content border-success-default text-success-default',
-      overlay: 'bg-success-default text-success-content',
-      loading: 'bg-success-default text-success-default',
-      default: 'border-success-default bg-success-default text-success-content',
+      outline: 'ring-[1px] ring-success-default text-success-default',
+      default: 'bg-success-default text-success-content',
     },
     error: {
-      outline: 'bg-primary-content border-error-default text-error-default',
-      overlay: 'bg-error-default text-error-content',
-      loading: 'bg-error-default text-error-default',
-      default: 'border-error-default bg-error-default text-error-content',
+      outline: 'ring-[1px] ring-error-default text-error-default',
+      default: 'bg-error-default text-error-content',
     },
   };
 
-  if (!outline && overlay) return VARIANTS[variant].outline;
-
-  if (outline && overlay) return VARIANTS[variant].overlay;
-
   if (outline) return VARIANTS[variant].outline;
-
-  if (overlay) return VARIANTS[variant].overlay;
-
-  if (loading) return VARIANTS[variant].loading;
-
   return VARIANTS[variant].default;
 };
 
 const getStyles = (
   variant: ButtonVariants,
   size: ButtonSizes,
-  overlay: boolean,
-  loading?: boolean,
-  outline?: boolean
+  overlay: boolean
 ) => {
-  return `${getColorStyles(variant, overlay, loading, outline)} ${getSizeStyles(
-    size
-  )}`;
+  return `${getColorStyles(variant, overlay)} ${getSizeStyles(size)}`;
 };
 
-const Button: FC<ButtonProps> = ({
+const Button: FC<ButtonProps> & React.HTMLProps<HTMLButtonElement> = ({
   size = 'medium',
   variant = 'primary',
   disabled = false,
-  text,
   loading = false,
   outline = false,
+  children,
   onClick,
   ...props
 }) => {
+  const { theme } = useContext(ThemeContext);
   const [hover, setHover] = useState(false);
+  const [coords, setCoords] = useState({
+    x: 0,
+    y: 0,
+  } as { x: number; y: number });
 
   return (
     <button
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
-      className={`relative w-fit h-fit transform transition-transform shadow-lg active:scale-95 border-2 ${getStyles(
+      onMouseEnter={e => {
+        setHover(true);
+        setCoords({
+          x: e.pageX - e.currentTarget.offsetLeft,
+          y: e.pageY - e.currentTarget.offsetTop,
+        });
+      }}
+      onMouseLeave={e => {
+        setHover(false);
+        setCoords({
+          x: e.pageX - e.currentTarget.offsetLeft,
+          y: e.pageY - e.currentTarget.offsetTop,
+        });
+      }}
+      className={`${theme.join(
+        ' '
+      )} overflow-hidden relative w-fit h-fit transform transition-transform shadow-lg active:scale-95 ${getStyles(
         variant,
         size,
-        false,
-        loading,
         outline
       )} group`}
-      type="button"
       onClick={onClick}
       disabled={disabled || loading}
       {...props}
@@ -129,7 +115,7 @@ const Button: FC<ButtonProps> = ({
       >
         {loading && (
           <svg
-            className="z-40 absolute fill-primary-content inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-gray-600 dark:fill-gray-300"
+            className="z-40 absolute fill-primary-content inline w-4 h-4 text-primary-default animate-spin"
             viewBox="0 0 100 101"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -144,29 +130,27 @@ const Button: FC<ButtonProps> = ({
             />
           </svg>
         )}
-        <span className={`${loading && 'invisible'}`}>{text}</span>
+        <span
+          className={`z-10 transition-colors ease-in-out ${loading &&
+            'invisible'}`}
+        >
+          {children}
+        </span>
       </span>
       {!loading && (
         <div
           data-testid="overlay"
           style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
             position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            transition: 'all .2s ease-out',
-            clipPath: hover ? 'inset(0% 0% 0% 0%)' : 'inset(100% 0% 0% 0%)',
+            top: coords.y,
+            left: coords.x,
+            transition: 'width 0.4s ease-in-out height 0.4s ease-in-out',
+            transform: 'translate(-50%, -50%)',
           }}
-          className={`${getStyles(variant, size, true, loading, outline)}`}
-        >
-          <span className={`uppercase font-light tracking-wider`}>
-            {!loading && text}
-          </span>
-        </div>
+          className={`bg-light-default bg-opacity-30 z-0 duration-700 ease-in-out rounded-full ${
+            hover ? 'w-[700px] h-[700px]' : 'w-0 h-0'
+          }`}
+        />
       )}
     </button>
   );
