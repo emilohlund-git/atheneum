@@ -17,14 +17,14 @@
 ## Installing
 
 ```
-yarn add @emilohlund-git/tailwind-component-lib
-npm i @emilohlund-git/tailwind-component-lib
+yarn add @atheneum/atheneum
+npm i @atheneum/atheneum
 ```
 
 If Tailwind isn't installed in your project you have to manually import the tailwind.css file from the library. E.x.
 
 ```TSX
-import '@emilohlund-git/tailwind-component-lib/dist/tailwind.css'
+import '@atheneum/atheneum/dist/tailwind.css'
 ```
 
 If Tailwind is installed you can omit the css file import and include the component library in the purge path of the tailwind.config.css
@@ -32,7 +32,7 @@ If Tailwind is installed you can omit the css file import and include the compon
 ```JS
 // new Project tailwind.config.js
 purge: [
-  './node_modules/@emilohlund-git/tailwind-component-lib/dist/*.js',
+  './node_modules/@atheneum/atheneum/dist/*.js',
 ],
 ```
 
@@ -42,12 +42,12 @@ Usage of components (after the library installed as a dependency into another pr
 
 ```TSX
 import React from "react";
-import { Button } from "@emilohlund-git/tailwind-component-lib";
+import { Button } from "@atheneum/atheneum";
 
 const App = () => (
   <div className="container">
     <h1>Hello I'm consuming the component library</h1>
-    <Button variant='primary' text='button' />
+    <Button variant='primary'>Text</Button>
   </div>
 );
 

@@ -6,7 +6,9 @@ import Button from './Button';
 describe('Running Test for Button', () => {
   test('Check Button Variants', async () => {
     const { findByRole, rerender } = render(
-      <Button variant={'primary'} outline size={'medium'} text="Button" />
+      <Button variant={'primary'} outline size={'medium'}>
+        Text
+      </Button>
     );
 
     const buttonElement = await findByRole('button');
@@ -14,18 +16,20 @@ describe('Running Test for Button', () => {
     expect(buttonElement.classList.contains('text-primary-default')).toBe(true);
 
     rerender(
-      <Button variant={'secondary'} outline size={'medium'} text="Button" />
+      <Button variant={'secondary'} outline size={'medium'}>
+        Text
+      </Button>
     );
 
     expect(buttonElement.classList.contains('text-secondary-default')).toBe(
       true
     );
 
-    rerender(<Button size={'small'} text="Button" />);
+    rerender(<Button size={'small'}>Text</Button>);
 
     expect(buttonElement.classList.contains('text-lg')).toBe(true);
 
-    rerender(<Button size="large" text="Button" />);
+    rerender(<Button size="large">Text</Button>);
 
     expect(buttonElement.classList.contains('text-2xl')).toBe(true);
 
