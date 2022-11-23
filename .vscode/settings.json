@@ -1,3 +1,7 @@
 {
-  "conventionalCommits.scopes": ["GitHub Action", "Link"]
+  "conventionalCommits.scopes": [
+    "GitHub Action",
+    "Link",
+    "Tailwind"
+  ]
 }
