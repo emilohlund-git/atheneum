@@ -1,8 +1,8 @@
 import React, { FC, useContext, useState } from 'react';
 import { ButtonProps } from './Button.types';
-import { ButtonVariants } from '../types/Variants';
 import { ButtonSizes } from '../types/Sizes';
 import { ThemeContext } from '../Context/ThemeContext/ThemeContext';
+import { buildButtonStyle, buildLoadingStyle } from '../utils/button.variants';
 
 const getSizeStyles = (size: ButtonSizes) => {
   const large = 'py-2 px-6 text-lg';
@@ -22,48 +22,8 @@ const getSizeStyles = (size: ButtonSizes) => {
   }
 };
 
-const getColorStyles = (variant: ButtonVariants, outline?: boolean) => {
-  const VARIANTS = {
-    primary: {
-      outline: 'ring-[1px] ring-primary-default text-primary-default',
-      default: 'bg-primary-default text-primary-content',
-    },
-    secondary: {
-      outline: 'ring-[1px] ring-secondary-default text-secondary-default',
-      default: 'bg-secondary-default text-secondary-content',
-    },
-    accent: {
-      outline: 'ring-[1px] ring-accent-default text-accent-default',
-      default: 'bg-accent-default text-accent-content',
-    },
-    light: {
-      outline: 'ring-[1px] ring-light-default text-light-content',
-      default: 'bg-light-default text-light-content',
-    },
-    dark: {
-      outline: 'ring-[1px] ring-dark-default text-dark-default',
-      default: 'bg-dark-default text-dark-content',
-    },
-    success: {
-      outline: 'ring-[1px] ring-success-default text-success-default',
-      default: 'bg-success-default text-success-content',
-    },
-    error: {
-      outline: 'ring-[1px] ring-error-default text-error-default',
-      default: 'bg-error-default text-error-content',
-    },
-  };
-
-  if (outline) return VARIANTS[variant].outline;
-  return VARIANTS[variant].default;
-};
-
-const getStyles = (
-  variant: ButtonVariants,
-  size: ButtonSizes,
-  overlay: boolean
-) => {
-  return `${getColorStyles(variant, overlay)} ${getSizeStyles(size)}`;
+const getStyles = (size: ButtonSizes) => {
+  return `${getSizeStyles(size)}`;
 };
 
 const Button: FC<ButtonProps> & React.HTMLProps<HTMLButtonElement> = ({
@@ -71,7 +31,7 @@ const Button: FC<ButtonProps> & React.HTMLProps<HTMLButtonElement> = ({
   variant = 'primary',
   disabled = false,
   loading = false,
-  outline = false,
+  subvariant = 'default',
   children,
   onClick,
   ...props
@@ -99,12 +59,11 @@ const Button: FC<ButtonProps> & React.HTMLProps<HTMLButtonElement> = ({
           y: e.pageY - e.currentTarget.offsetTop,
         });
       }}
-      className={`${theme.join(
-        ' '
-      )} overflow-hidden relative w-fit h-fit transform transition-transform shadow-lg active:scale-95 ${getStyles(
+      className={`${theme.join(' ')} ${buildButtonStyle(
         variant,
-        size,
-        outline
+        subvariant
+      )} overflow-hidden relative w-fit h-fit transform transition-transform shadow-lg active:scale-95 ${getStyles(
+        size
       )} group`}
       onClick={onClick}
       disabled={disabled || loading}
@@ -115,7 +74,10 @@ const Button: FC<ButtonProps> & React.HTMLProps<HTMLButtonElement> = ({
       >
         {loading && (
           <svg
-            className="z-40 absolute fill-primary-content inline w-4 h-4 text-primary-default animate-spin"
+            className={`z-40 absolute inline w-4 h-4 ${buildLoadingStyle(
+              variant,
+              subvariant
+            )} animate-spin`}
             viewBox="0 0 100 101"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -147,7 +109,11 @@ const Button: FC<ButtonProps> & React.HTMLProps<HTMLButtonElement> = ({
             transition: 'width 0.4s ease-in-out height 0.4s ease-in-out',
             transform: 'translate(-50%, -50%)',
           }}
-          className={`bg-light-default bg-opacity-30 z-0 duration-700 ease-in-out rounded-full ${
+          className={`${
+            subvariant === 'outline'
+              ? `${buildButtonStyle(variant, 'default')}`
+              : `bg-primary-content`
+          } bg-opacity-30 z-0 duration-700 ease-in-out rounded-full ${
             hover ? 'w-[700px] h-[700px]' : 'w-0 h-0'
           }`}
         />

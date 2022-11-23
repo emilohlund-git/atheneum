@@ -6,7 +6,7 @@ import Button from './Button';
 describe('Running Test for Button', () => {
   test('Check Button Variants', async () => {
     const { findByRole, rerender } = render(
-      <Button variant={'primary'} outline size={'medium'}>
+      <Button variant={'primary'} subvariant={'outline'} size={'medium'}>
         Text
       </Button>
     );
@@ -16,7 +16,7 @@ describe('Running Test for Button', () => {
     expect(buttonElement.classList.contains('text-primary-default')).toBe(true);
 
     rerender(
-      <Button variant={'secondary'} outline size={'medium'}>
+      <Button variant={'secondary'} subvariant={'outline'} size={'medium'}>
         Text
       </Button>
     );
