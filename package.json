@@ -32,7 +32,7 @@
     "storybook": "start-storybook -p 6006",
     "storybook:build": "build-storybook",
     "chromatic": "chromatic --project-token=CHROMATIC_PROJECT_TOKEN",
-    "post:push": "git fetch && git checkout main && git pull",
+    "post:push": "git fetch --prune && git checkout main && git pull",
     "semantic-release": "semantic-release"
   },
   "peerDependencies": {

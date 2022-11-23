@@ -1,5 +1,5 @@
 {
-  "include": ["src", "types"],
+  "include": ["src", "types", "tailwind"],
   "compilerOptions": {
     "module": "esnext",
     "lib": ["dom", "esnext"],
