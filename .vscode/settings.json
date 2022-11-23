@@ -2,6 +2,10 @@
   "conventionalCommits.scopes": [
     "GitHub Action",
     "Link",
-    "Tailwind"
-  ]
+    "Tailwind",
+    "Button",
+    "Input",
+    "Form"
+  ],
+  "jest.jestCommandLine": "yarn test"
 }
