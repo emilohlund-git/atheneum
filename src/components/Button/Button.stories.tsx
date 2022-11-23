@@ -5,7 +5,7 @@ import Button from './Button';
 import { ButtonProps } from './Button.types';
 
 import { withKnobs } from '@storybook/addon-knobs';
-import ThemeProvider from '../Context/ThemeContext/ThemeContext';
+import ThemeProvider from '../../context/ThemeContext';
 
 export default {
   title: 'Components/UI/Button',
