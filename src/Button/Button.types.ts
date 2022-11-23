@@ -1,13 +1,14 @@
 import { MouseEventHandler, ReactNode } from 'react';
 import { ButtonSizes } from '../types/Sizes';
-import { ButtonVariants } from '../types/Variants';
+import { ButtonVariants, SubVariants } from '../types/Variants';
 export interface ButtonProps {
   text?: string;
   variant?: ButtonVariants;
   disabled?: boolean;
   loading?: boolean;
   size?: ButtonSizes;
-  outline?: boolean;
+  subvariant?: SubVariants;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   children: ReactNode;
+  type?: 'button' | 'submit' | 'reset';
 }

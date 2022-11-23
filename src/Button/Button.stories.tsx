@@ -25,28 +25,28 @@ const OverviewTemplate: Story<ButtonProps> = () => {
         <div className="flex flex-col">
           <p className="font-semibold text-lg my-4">Outline buttons</p>
           <div className="flex gap-x-4">
-            <Button variant="primary" outline>
+            <Button variant="primary" subvariant="outline">
               Text
             </Button>
-            <Button variant="secondary" outline>
+            <Button variant="secondary" subvariant="outline">
               Text
             </Button>
-            <Button variant="accent" outline>
+            <Button variant="accent" subvariant="outline">
               Text
             </Button>
-            <Button variant="light" outline>
+            <Button variant="light" subvariant="outline">
               Text
             </Button>
-            <Button variant="dark" outline>
+            <Button variant="dark" subvariant="outline">
               Text
             </Button>
-            <Button variant="success" outline>
+            <Button variant="success" subvariant="outline">
               Text
             </Button>
-            <Button variant="error" outline>
+            <Button variant="error" subvariant="outline">
               Text
             </Button>
-            <Button variant="error" loading outline>
+            <Button variant="error" loading subvariant="outline">
               Text
             </Button>
           </div>

@@ -1,3 +1,3 @@
 import { Theme } from "../types/Theme";
 
-export const defaultTheme: Theme = ['font-display', 'font-extralight'];
+export const defaultTheme: Theme = ['font-default', 'font-extralight'];

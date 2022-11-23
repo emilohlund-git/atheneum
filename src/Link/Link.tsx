@@ -10,7 +10,7 @@ const getStyles = (variant: LinkVariants, hover: boolean) => {
   return `${getColorStyles(variant, hover)}`;
 };
 
-const Link: FC<LinkProps> = ({
+const Link: FC<LinkProps> & React.HTMLProps<HTMLLinkElement> = ({
   variant = 'primary',
   href,
   children,
@@ -19,13 +19,12 @@ const Link: FC<LinkProps> = ({
   warning,
   hover = false,
   className,
-  title,
   ...props
 }) => {
   return (
     <a
       href={href}
-      className={`${className} font-thin cursor-pointer text-lg ${getStyles(
+      className={`${className} font-light cursor-pointer text-md ${getStyles(
         variant,
         hover
       )}`}

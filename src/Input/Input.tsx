@@ -1,12 +1,16 @@
-import React, { FC } from 'react';
+import React, { FC, useState, useContext } from 'react';
+import { FormContext } from '../Context/FormContext/FormContext';
+
+import PasswordEyeClosed from '../icons/PasswordEyeClosed';
+import PasswordEyeOpened from '../icons/PasswordEyeOpened';
 import { InputSizes } from '../types/Sizes';
 import { InputVariants } from '../types/Variants';
 import { InputProps } from './Input.types';
 
 const getSizeStyles = (size: InputSizes) => {
-  const small = 'py-2 px-4 text-lg';
-  const medium = 'py-3 px-5 text-xl';
-  const large = 'py-4 px-5 text-2xl';
+  const small = 'py-2 px-4 text-sm';
+  const medium = 'py-2 px-4 text-md';
+  const large = 'py-2 px-4 text-lg';
 
   switch (size) {
     case 'small':
@@ -49,34 +53,57 @@ const getStyles = (
   )}`;
 };
 
-const Input: FC<InputProps> = ({
+const Input: FC<InputProps> & React.HTMLProps<HTMLInputElement> = ({
   warning = false,
   error = false,
   success = false,
-  value,
-  onChange,
   placeholder,
   variant = 'primary',
   size = 'medium',
   disabled = false,
+  type = 'text',
+  message,
+  required = false,
+  onInput,
+  id,
   ...props
 }) => {
+  const { state } = useContext(FormContext);
+  const [show, setShow] = useState(false);
+
+  const changeHandler = (event: any) => {
+    onInput(placeholder?.toLowerCase(), event.target.value);
+  };
+
   return (
-    <input
-      className={`${getStyles(
-        variant,
-        size,
-        error,
-        warning,
-        success
-      )} font-light transition-all w-fit h-fit rounded-lg ring-offset-1 focus:ring-2 focus:outline-none`}
-      placeholder={placeholder}
-      type="text"
-      value={value}
-      onChange={onChange}
-      disabled={disabled}
-      {...props}
-    />
+    <div className="relative w-fit flex flex-col my-2">
+      <input
+        className={`${getStyles(
+          variant,
+          size,
+          error,
+          warning,
+          success
+        )} font-light transition-all w-fit h-fit ring-offset-1 focus:ring-2 focus:outline-none`}
+        placeholder={placeholder}
+        type={type === 'password' ? (show ? 'text' : 'password') : type}
+        disabled={disabled}
+        required={required}
+        onChange={changeHandler}
+        value={state[placeholder?.toLowerCase() as keyof typeof state]}
+        {...props}
+      />
+      {type === 'password' && (
+        <div onClick={() => setShow(!show)}>
+          {show ? <PasswordEyeOpened /> : <PasswordEyeClosed />}
+        </div>
+      )}
+      {error && (
+        <p className="text-error-default text-sm mt-2 break-words max-w-fit">
+          {message}
+        </p>
+      )}
+    </div>
   );
 };
 

@@ -23,3 +23,9 @@ export const LinkVariantValues = [
   'warning',
 ] as const;
 export type LinkVariants = typeof LinkVariantValues[number];
+
+const SubVariantValues = [
+  'outline',
+  'default',
+] as const;
+export type SubVariants = typeof SubVariantValues[number];
