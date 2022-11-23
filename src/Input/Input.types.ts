@@ -6,8 +6,6 @@ export interface InputProps {
   error?: boolean;
   warning?: boolean;
   success?: boolean;
-  value: string;
-  onChange?: React.ChangeEventHandler<HTMLInputElement>;
   placeholder?: string;
   variant?: InputVariants;
   size?: InputSizes;
@@ -15,4 +13,7 @@ export interface InputProps {
   type?: InputTypes;
   message?: string;
   required?: boolean;
+  component?: string;
+  id?: string;
+  onInput?: any;
 }

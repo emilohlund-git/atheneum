@@ -1,7 +1,6 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
 
-import { withKnobs } from '@storybook/addon-knobs';
 import Input from './Input';
 import { InputProps } from './Input.types';
 
@@ -9,7 +8,7 @@ export default {
   title: 'Components/UI/Input',
   component: Input,
   argTypes: {},
-  decorators: [withKnobs],
+  decorators: [],
 } as Meta<typeof Input>;
 
 const OverviewTemplate: Story<InputProps> = () => {
@@ -18,21 +17,21 @@ const OverviewTemplate: Story<InputProps> = () => {
       <div className="flex flex-col">
         <p className="font-semibold text-lg my-4">Input styles</p>
         <div className="flex gap-x-4">
-          <Input variant="primary" value="Primary" />
-          <Input variant="bordered" value="Bordered" />
-          <Input variant="ghost" value="Ghost" />
+          <Input variant="primary" />
+          <Input variant="bordered" />
+          <Input variant="ghost" />
         </div>
         <p className="font-semibold text-lg my-4">Input sizes</p>
         <div className="flex gap-x-4">
-          <Input variant="primary" size="large" value="Large" />
-          <Input variant="primary" size="medium" value="Medium" />
-          <Input variant="primary" size="small" value="Small" />
+          <Input variant="primary" size="large" />
+          <Input variant="primary" size="medium" />
+          <Input variant="primary" size="small" />
         </div>
         <p className="font-semibold text-lg my-4">Input colors</p>
         <div className="flex gap-x-4">
-          <Input variant="primary" warning size="medium" value="Warning" />
-          <Input variant="primary" error size="medium" value="Error" />
-          <Input variant="primary" success size="medium" value="Success" />
+          <Input variant="primary" warning size="medium" />
+          <Input variant="primary" error size="medium" />
+          <Input variant="primary" success size="medium" />
         </div>
       </div>
     </div>
@@ -72,24 +71,20 @@ Disabled.args = {
 export const Error = Template.bind({});
 Error.args = {
   error: true,
-  value: 'Error',
   message: 'This is an error message. Something went terribly wrong.',
 };
 
 export const Success = Template.bind({});
 Success.args = {
   success: true,
-  value: 'Success',
 };
 
 export const Warning = Template.bind({});
 Warning.args = {
   warning: true,
-  value: 'Warning',
 };
 
 export const Password = Template.bind({});
 Password.args = {
   type: 'password',
-  value: 'Password',
 };

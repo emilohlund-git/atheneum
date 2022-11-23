@@ -1,4 +1,6 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useContext } from 'react';
+import { FormContext } from '../Context/FormContext/FormContext';
+
 import PasswordEyeClosed from '../icons/PasswordEyeClosed';
 import PasswordEyeOpened from '../icons/PasswordEyeOpened';
 import { InputSizes } from '../types/Sizes';
@@ -55,8 +57,6 @@ const Input: FC<InputProps> & React.HTMLProps<HTMLInputElement> = ({
   warning = false,
   error = false,
   success = false,
-  value,
-  onChange,
   placeholder,
   variant = 'primary',
   size = 'medium',
@@ -64,11 +64,19 @@ const Input: FC<InputProps> & React.HTMLProps<HTMLInputElement> = ({
   type = 'text',
   message,
   required = false,
+  onInput,
+  id,
   ...props
 }) => {
+  const { state } = useContext(FormContext);
   const [show, setShow] = useState(false);
+
+  const changeHandler = (event: any) => {
+    onInput(placeholder?.toLowerCase(), event.target.value);
+  };
+
   return (
-    <div className="relative w-fit flex flex-col">
+    <div className="relative w-fit flex flex-col my-2">
       <input
         className={`${getStyles(
           variant,
@@ -79,10 +87,10 @@ const Input: FC<InputProps> & React.HTMLProps<HTMLInputElement> = ({
         )} font-light transition-all w-fit h-fit ring-offset-1 focus:ring-2 focus:outline-none`}
         placeholder={placeholder}
         type={type === 'password' ? (show ? 'text' : 'password') : type}
-        value={value}
-        onChange={onChange}
         disabled={disabled}
         required={required}
+        onChange={changeHandler}
+        value={state[placeholder?.toLowerCase() as keyof typeof state]}
         {...props}
       />
       {type === 'password' && (

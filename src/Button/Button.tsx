@@ -34,6 +34,7 @@ const Button: FC<ButtonProps> & React.HTMLProps<HTMLButtonElement> = ({
   subvariant = 'default',
   children,
   onClick,
+  type,
   ...props
 }) => {
   const { theme } = useContext(ThemeContext);
@@ -45,6 +46,7 @@ const Button: FC<ButtonProps> & React.HTMLProps<HTMLButtonElement> = ({
 
   return (
     <button
+      type={type}
       onMouseEnter={e => {
         setHover(true);
         setCoords({

@@ -10,4 +10,5 @@ export interface ButtonProps {
   subvariant?: SubVariants;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   children: ReactNode;
+  type?: 'button' | 'submit' | 'reset';
 }
